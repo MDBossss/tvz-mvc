@@ -44,8 +44,10 @@ public class Fakultet
 
     public IEnumerable<Student> DohvatiStudente91NoLinq()
     {
+        // Empty list creation for filtered students
         var studenti = new List<Student>();
 
+        //Filter students manually
         foreach (var osoba in Osobe)
         {
             if(osoba is Student && osoba.DatumRodenja.Year > 1991)
@@ -55,7 +57,10 @@ public class Fakultet
         }
 
         return studenti;
+    }
 
-
+    public IEnumerable<Student> StudentiNeTvzD()
+    {
+        return Osobe.Where(osoba => osoba is Student).Cast<Student>().Where(student => !student.JMBAG.StartsWith("0246") && student.Prezime.StartsWith("D");
     }
 }

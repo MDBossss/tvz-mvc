@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Vjezba.Model;
 
@@ -10,9 +11,9 @@ public class Student : Osoba
         get => _jmbag;
         set
         {
-            if(value.length == 13 && !value.All(char.isDigit))
+            if(value.Length == 13 && !value.All(char.IsDigit))
             {
-                throw new InvalidOperationException()
+                throw new InvalidOperationException();
             }
             _jmbag = value;
         }

@@ -1,23 +1,12 @@
 ﻿using System;
+using System.Linq;
 
 namespace Vjezba.Model;
 
 public class Osoba
 {
-    public string Ime { get; set; };
-    public string Prezime { get; set; };
-
-    public string Ime
-    {
-        get => _ime;
-        set => _ime = value;
-    }
-
-    public string Prezime
-    {
-        get => _prezime;
-        set => _prezime = value;
-    }
+    public string Ime { get; set; }
+    public string Prezime { get; set; }
 
     private string _oib;
     public string OIB
@@ -25,9 +14,9 @@ public class Osoba
         get => _oib;
         set
         {
-            if (value.length != 11 || !value.All(char.isDigit))
+            if (value.Length != 11 || !value.All(char.IsDigit))
             {
-                throw new InvalidOperationException()
+                throw new InvalidOperationException();
             }
 
             _oib = value;
@@ -40,7 +29,7 @@ public class Osoba
         get => _jmbg;
         set
         {
-            if(value.length != 13 || !value.All(char.isDigit))
+            if (value.Length != 13 || !value.All(char.IsDigit));
         }
     }
 
@@ -52,7 +41,7 @@ public class Osoba
             var mjesec = JMBG.Substring(2, 2);
             var godina = JMBG.Substring(4, 3);
 
-            return new(int.parse(godina) + 1000, int.Parse(mjesec), int.Parse(dan));
+            return new(int.Parse(godina) + 1000, int.Parse(mjesec), int.Parse(dan));
         }
     }
 }
