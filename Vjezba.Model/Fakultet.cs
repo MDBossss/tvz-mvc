@@ -73,4 +73,23 @@ public class Fakultet
     {
         return Osobe.Where(osoba => osoba is Student && osoba.DatumRodenja.Year == god).Cast<Student>().OrderBy(s => s.Prosjek).FirstOrDefault();
     }
+
+    public List<Student> StudentiGodinaOrdered(int god)
+    {
+        return Osobe.Where(osoba => osoba is Student && osoba.DatumRodenja.Year == god).Cast<Student>().OrderByDescending(s => s.Prosjek).ToList();
+    }
+
+    public List<Profesor> SviProfesori(bool asc)
+    {
+        var profesori = Osobe.Where(osoba => osoba is Profesor).Cast<Profesor>().ToList();
+
+        if (asc)
+        {
+            return profesori.OrderBy(p => p.Prezime).ThenBy(p => p.Ime).ToList();
+        }
+        else
+        {
+            return profesori.OrderByDescending(p => p.Prezime).ThenBy(p => p.Ime).ToList();
+        }
+    }
 }
