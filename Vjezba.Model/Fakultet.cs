@@ -92,4 +92,9 @@ public class Fakultet
             return profesori.OrderByDescending(p => p.Prezime).ThenBy(p => p.Ime).ToList();
         }
     }
+
+    public int KolikoProfesoraUZvanju(Zvanje zvanje)
+    {
+        return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => p.Zvanje == zvanje).Count();
+    }
 }
