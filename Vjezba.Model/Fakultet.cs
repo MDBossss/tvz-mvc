@@ -68,4 +68,9 @@ public class Fakultet
     {
         return DohvatiStudente91().ToList<Student>();
     }
+
+    public Student NajboljiProsjek(int god)
+    {
+        return Osobe.Where(osoba => osoba is Student && osoba.DatumRodenja.Year == god).Cast<Student>().OrderBy(s => s.Prosjek).FirstOrDefault();
+    }
 }
