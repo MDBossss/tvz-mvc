@@ -61,6 +61,11 @@ public class Fakultet
 
     public IEnumerable<Student> StudentiNeTvzD()
     {
-        return Osobe.Where(osoba => osoba is Student).Cast<Student>().Where(student => !student.JMBAG.StartsWith("0246") && student.Prezime.StartsWith("D");
+        return Osobe.Where(osoba => osoba is Student).Cast<Student>().Where(student => !student.JMBAG.StartsWith("0246") && student.Prezime.StartsWith("D"));
+    }
+
+    public List<Student> DohvatiStudente91List()
+    {
+        return DohvatiStudente91().ToList<Student>();
     }
 }
