@@ -97,4 +97,10 @@ public class Fakultet
     {
         return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => p.Zvanje == zvanje).Count();
     }
+
+    public List<Profesor> NeaktivniProfesori(int x)
+    {
+        return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => (p.Zvanje == Zvanje.Predavac || p.Zvanje == Zvanje.VisiPredavac) && p.Predmeti.Count() < x).ToList();
+    }
+
 }
