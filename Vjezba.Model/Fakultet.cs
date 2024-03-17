@@ -108,4 +108,11 @@ public class Fakultet
         return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count() > x && p.Predmeti.Any(p => p.ECTS >= minEcts);
     }
 
+    public void IzmjeniProfesore(Action<Profesor> action)
+    {
+        foreach (var profesor in Osobe.OfType<Profesor>())
+        {
+            action(profesor);
+        }
+    }
 }
