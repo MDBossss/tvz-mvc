@@ -103,4 +103,9 @@ public class Fakultet
         return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => (p.Zvanje == Zvanje.Predavac || p.Zvanje == Zvanje.VisiPredavac) && p.Predmeti.Count() < x).ToList();
     }
 
+    public List<Profesor> AktivniAsistenti(int x, int minEcts)
+    {
+        return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count() > x && p.Predmeti.Any(p => p.ECTS >= minEcts);
+    }
+
 }
