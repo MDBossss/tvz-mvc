@@ -11,7 +11,7 @@ public class Student : Osoba
         get => _jmbag;
         set
         {
-            if(value.Length == 13 && !value.All(char.IsDigit))
+            if(value.Length != 10 || !value.All(char.IsDigit))
             {
                 throw new InvalidOperationException();
             }

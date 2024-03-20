@@ -9,17 +9,17 @@ public class Profesor : Osoba
 	public Zvanje Zvanje { get; set; }
 	public DateTime DatumIzbora { get; set; }
 
-	public List<Predmet> Predmeti { get; set; }
+	public List<Predmet> Predmeti { get; set; } = [];
 
 	public int KolikoDoReizbora()
 	{
 		if(Zvanje == Zvanje.Asistent)
 		{
-			return DateTime.Now.Year - DatumIzbora.Year + 4;
+			return 4 - (DateTime.Now.Year - DatumIzbora.Year);
 		}
 		else
 		{
-			return DateTime.Now.Year - DatumIzbora.Year + 5;
+			return 5 - (DateTime.Now.Year - DatumIzbora.Year);
 		}
 	}
 

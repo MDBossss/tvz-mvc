@@ -29,11 +29,15 @@ public class Osoba
         get => _jmbg;
         set
         {
-            if (value.Length != 13 || !value.All(char.IsDigit));
+            if (value.Length != 13 || !value.All(char.IsDigit))
+            {
+                throw new InvalidOperationException();
+            }
+            _jmbg = value;
         }
     }
 
-    public DateTime DatumRodenja
+    public DateTime DatumRodjenja
     {
         get
         {

@@ -39,7 +39,7 @@ public class Fakultet
     public IEnumerable<Student> DohvatiStudente91()
     {
         // Filter the students from the array which are born after year 1991
-        return Osobe.Where(Osoba => Osoba is Student).Cast<Student>().Where(student => student.DatumRodenja.Year > 1991);
+        return Osobe.Where(Osoba => Osoba is Student).Cast<Student>().Where(student => student.DatumRodjenja.Year > 1991);
     }
 
     public IEnumerable<Student> DohvatiStudente91NoLinq()
@@ -50,7 +50,7 @@ public class Fakultet
         //Filter students manually
         foreach (var osoba in Osobe)
         {
-            if(osoba is Student && osoba.DatumRodenja.Year > 1991)
+            if(osoba is Student && osoba.DatumRodjenja.Year > 1991)
             {
                 studenti.Add(osoba as Student);
             }
@@ -71,12 +71,12 @@ public class Fakultet
 
     public Student NajboljiProsjek(int god)
     {
-        return Osobe.Where(osoba => osoba is Student && osoba.DatumRodenja.Year == god).Cast<Student>().OrderBy(s => s.Prosjek).FirstOrDefault();
+        return Osobe.Where(osoba => osoba is Student && osoba.DatumRodjenja.Year == god).Cast<Student>().MaxBy(s => s.Prosjek);
     }
 
     public List<Student> StudentiGodinaOrdered(int god)
     {
-        return Osobe.Where(osoba => osoba is Student && osoba.DatumRodenja.Year == god).Cast<Student>().OrderByDescending(s => s.Prosjek).ToList();
+        return Osobe.Where(osoba => osoba is Student && osoba.DatumRodjenja.Year == god).Cast<Student>().OrderByDescending(s => s.Prosjek).ToList();
     }
 
     public List<Profesor> SviProfesori(bool asc)
@@ -105,7 +105,7 @@ public class Fakultet
 
     public List<Profesor> AktivniAsistenti(int x, int minEcts)
     {
-        return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count() > x && p.Predmeti.Any(p => p.ECTS >= minEcts);
+        return Osobe.Where(o => o is Profesor).Cast<Profesor>().Where(p => p.Zvanje == Zvanje.Asistent && p.Predmeti.Count() > x && p.Predmeti.Any(p => p.ECTS >= minEcts)).ToList();
     }
 
     public void IzmjeniProfesore(Action<Profesor> action)

@@ -7,5 +7,5 @@ public enum Zvanje
     Asistent,
     Predavac,
     VisiPredavac,
-    ProfViseSkole
+    ProfVisokeSkole
 }
